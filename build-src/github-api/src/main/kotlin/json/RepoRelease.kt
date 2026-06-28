@@ -18,7 +18,7 @@ data class RepoRelease(
     @SerialName("node_id") val nodeId: String,
     @SerialName("prerelease") val prerelease: Boolean,
     @SerialName("published_at") val publishedAt: String,
-    @SerialName("reactions") val reactions: Reactions,
+    @SerialName("reactions") val reactions: Reactions? = null,
     @SerialName("tag_name") val tagName: String,
     @SerialName("tarball_url") val tarballUrl: String,
     @SerialName("target_commitish") val targetCommitish: String,

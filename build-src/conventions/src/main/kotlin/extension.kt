@@ -316,7 +316,7 @@ fun Project.setupTachiyomiExtensionConfiguration(
         // jitpack doesn't work
         val downloadInspectorTask: TaskProvider<Download> = tasks.register<Download>("downloadInspector") {
             val inspectorHandler = GitHubReleasesHandler("tachiyomiorg", "tachiyomi-extensions-inspector")
-            src(project.provider { inspectorHandler.latestRelease.assets.single { it.name.endsWith(".jar") } })
+            src(project.provider { inspectorHandler.latestRelease.assets.single { it.name.endsWith(".jar") }.browserDownloadUrl })
             dest(layout.buildDirectory.file("inspector.jar"))
             overwrite(false)
             onlyIfModified(true)
