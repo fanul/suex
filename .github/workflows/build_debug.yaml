@@ -30,7 +30,7 @@ jobs:
         uses: gradle/gradle-build-action@v2
 
       - name: Construct debug Repo
-        run: ./gradlew :constructDebugRepo
+        run: ./gradlew :constructDebugRepo --stacktrace
 
       - name: Checkout repo branch
         uses: actions/checkout@v4
