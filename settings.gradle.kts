@@ -75,20 +75,18 @@ fun includeAllSubprojectsIn(dir: File, prefix: String?, expectedScriptName: Stri
 fun includeAllSubprojectsInRecursively(root: File, prefix: String?, expectedScriptName: String? = "build.gradle") {
     if (!root.exists() || !root.isDirectory) return
 
-    fileTree(root).forEach { element ->
-        val include = element.isDirectory && (expectedScriptName == null ||
-            (element.listFiles() ?: emptyArray())
-                .map { it.name }
-                .let { it.contains(expectedScriptName) || it.contains("${expectedScriptName}.kts") })
-
-        if (include) {
+    fileTree(root).files.forEach { element ->
+        if (element.name == expectedScriptName || element.name == "${expectedScriptName}.kts") {
+            val projectDir = element.parentFile
+            val relativePath = projectDir.relativeTo(root).invariantSeparatorsPath
+            val projectName = relativePath.replace("/", "-")
             val path = when (prefix) {
-                null -> ":${element.name}"
-                else -> ":${prefix}-${element.name}"
+                null -> ":$projectName"
+                else -> ":$prefix-$projectName"
             }
             include(path)
             project(path).apply {
-                this.projectDir = element
+                this.projectDir = projectDir
             }
         }
     }
