@@ -19,7 +19,7 @@ versions.properties
 # Covers files to be ignored for android development using Android Studio.
 
 # Built application files
-*.apk
+#!*.apk
 *.ap_
 *.aab
 
@@ -260,7 +260,7 @@ local.properties
 captures/
 .externalNativeBuild/
 .cxx/
-*.apk
+#!*.apk
 output.json
 
 # IntelliJ
