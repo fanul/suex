@@ -22,6 +22,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.ByteArrayOutputStream
 import java.io.File
+import kotlin.jvm.optionals.getOrNull
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.BINARY)
