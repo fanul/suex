@@ -279,19 +279,19 @@ fun Project.setupTachiyomiExtensionConfiguration(
 
     dependencies {
         @OptIn(LibVersionNotReadyYet::class) when (libVersion) {
-            LibVersion.V4 -> "compileOnly"(fromAny(tachiyomiCatalog, libsCatalog) { findLibrary("tachiyomi_lib_v4").get() })
-            LibVersion.V5 -> "compileOnly"(fromAny(tachiyomiCatalog, libsCatalog) { findBundle("tachiyomi_lib_v5").get() })
+            LibVersion.V4 -> "compileOnly"(fromAny(tachiyomiCatalog, libsCatalog) { findLibrary("tachiyomi_lib_v4").getOrNull() })
+            LibVersion.V5 -> "compileOnly"(fromAny(tachiyomiCatalog, libsCatalog) { findBundle("tachiyomi_lib_v5").getOrNull() })
         }
-        "compileOnly"(fromAny(tachiyomiCatalog, libsCatalog) { findBundle("extension_compile").get() })
+        "compileOnly"(fromAny(tachiyomiCatalog, libsCatalog) { findBundle("extension_compile").getOrNull() })
 
         if (useDefaultManifest) {
             "implementation"(project(":default"))
         }
 
         if (includeStdLibInApk) {
-            "implementation"(fromAny(tachiyomiCatalog, libsCatalog) { findLibrary("kotlin_stdlib").get() })
+            "implementation"(fromAny(tachiyomiCatalog, libsCatalog) { findLibrary("kotlin_stdlib").getOrNull() })
         } else {
-            "compileOnly"(fromAny(tachiyomiCatalog, libsCatalog) { findLibrary("kotlin_stdlib").get() })
+            "compileOnly"(fromAny(tachiyomiCatalog, libsCatalog) { findLibrary("kotlin_stdlib").getOrNull() })
         }
 
         libs.forEach { lib ->
